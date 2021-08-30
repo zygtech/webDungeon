@@ -1,4 +1,4 @@
-# webDungeon
+# webDungeon3D
 webDungeon Multiplayer Game
 
 https://zygtech.pl/webDungeon/
