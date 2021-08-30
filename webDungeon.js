@@ -153,7 +153,7 @@
 				talk.value="";
 			}
 			else if (e.key == 'Backspace') talk.value=talk.value.substr(0, talk.value.length - 1); 
-				else if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 65 && event.keyCode <= 90)) talk.value += e.key; }
+				else if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode == 32)) talk.value += e.key; }
 	function onkeyup(e) { if (e.key == 'Shift') { e.preventDefault(); attack=false; }; }
 
 	canvas.addEventListener("mousedown", onmousedown, false);
