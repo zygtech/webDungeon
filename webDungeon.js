@@ -35,10 +35,10 @@
 	var IMGsword2=new Image();
 	var IMGenemy=new Image();
 	var IMGplayer=new Image();
-	IMGsword1.src="sword1.png";
-	IMGsword2.src="sword2.png";
-	IMGenemy.src="enemy.png";
-	IMGplayer.src="player.png";
+	IMGsword1.src="IMGs/sword1.png";
+	IMGsword2.src="IMGs/sword2.png";
+	IMGenemy.src="IMGs/enemy.png";
+	IMGplayer.src="IMGs/player.png";
 	
 	function tick() {
 		clock = setTimeout(function(){ tick() }, 1000/FPS);
