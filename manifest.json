@@ -1,0 +1,17 @@
+{
+  "short_name": "webDungeon",
+  "name": "webDungeon by Chris Hrybacz",
+  "icons": [
+    {
+      "src": "../zyglogo.png",
+      "sizes": "500x500",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/webDungeon/",
+  "background_color": "#f6f6f6",
+  "display": "standalone",
+  "scope": "/webDungeon/",
+  "theme_color": "#1a1a1a",
+  "orientation": "landscape"
+}
