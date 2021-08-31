@@ -63,7 +63,7 @@
 	<canvas id="3d-canvas" width="1280" height="720"></canvas>
 	<div id="info"><h3><span id="message"></span><br /><br />KILLS: <span id="kills">0</span></h3><table id="maze">
 		<tbody></tbody>
-	</table><input id="talk" type="text" disabled placeholder="TALK" /><div id="chat"></div></div></center>
+	</table><input id="talk" type="text" disabled placeholder="<?php echo $_GET['name']; ?>" /><div id="chat"></div></div></center>
 	<script>
 	var playerName = "<?php echo $_GET['name']; ?>";
 	</script>
