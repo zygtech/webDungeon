@@ -214,7 +214,7 @@
 						ctx.drawImage(IMGenemy,((object[2][0]-64)/(object[2][2]*DepthAttribute)+canvas.width/2),((object[2][1]-128)/(object[2][2]*DepthAttribute)+canvas.height/2),128/(object[2][2]*DepthAttribute),256/(object[2][2]*DepthAttribute));
 					else {
 						ctx.drawImage(IMGplayer,((object[2][0]-64)/(object[2][2]*DepthAttribute)+canvas.width/2),((object[2][1]-128)/(object[2][2]*DepthAttribute)+canvas.height/2),128/(object[2][2]*DepthAttribute),256/(object[2][2]*DepthAttribute));
-						if (playern=="" && obcect[2]<4800) {
+						if (playern=="" && object[2][2]<4800) {
 							document.getElementById("message").innerHTML="YOU HEAR: " + object[5];
 							playern=object[5];
 						}
