@@ -155,7 +155,7 @@
 				talk.value="";
 			}
 			else if (e.key == 'Backspace') talk.value=talk.value.substr(0, talk.value.length - 1); 
-				else if (e.keyCode > 31) talk.value += e.key; }
+				else if (e.keyCode > 31 && e.key.length==1) talk.value += e.key; }
 	function onkeyup(e) { if (e.key == 'Shift') { e.preventDefault(); attack=false; }; }
 
 	canvas.addEventListener("mousedown", onmousedown, false);
