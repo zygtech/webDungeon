@@ -495,7 +495,7 @@
 			});
 			players=updated;
 		}
-		$.get("sync.php", { name: playerName, X: Math.floor(cameraX), Y: Math.floor(cameraY) }, function(response) {
+		$.get("sync.php", { name: playerName, X: cameraX, Y: cameraY }, function(response) {
 			if (response!="") 
 				coords=JSON.parse(response);
 			else
