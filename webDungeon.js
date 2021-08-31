@@ -22,7 +22,6 @@
 	var attack = false;
 	var hit = 0;
 	var kills = 0;
-	var updated = [];
 	var players = [];
 	var playern = "";
 	var enemies = [];
@@ -496,8 +495,8 @@
 					}
 				updated.push([ [ xcoord, ycoord ], 3, null, [ coords[key][1], coords[key][2] ], [ ((coords[key][1]-xcoord)/10), ((coords[key][2]-ycoord)/10) ], key ]);		
 			});
+			players=updated;
 		});
-		players=updated;
 	}
 	
 	function DrawMap2d() {
