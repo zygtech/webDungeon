@@ -2,7 +2,7 @@
 	$name = $_GET['name'];
 	$level = unserialize(file_get_contents('run.db'));
 	foreach ($level as $key => $player)
-		if ($player[0]<time()-10) {
+		if ($player[0]<time()-60) {
 			unset($level[$key]);
 			unlink($key . '.chat');
 		}
