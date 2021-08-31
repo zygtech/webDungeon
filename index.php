@@ -31,10 +31,10 @@
 		width: 18px;
 		height: 10px;
 	}
-	h1,h2,table { 
+	h1,h2,h3,table { 
 		margin: 0; 
 	}
-	h3 {
+	#info h3 {
 		margin: 24px;
 	}
 	#message {
