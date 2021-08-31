@@ -113,8 +113,8 @@
 			if (isBackwards) { check = -collide[1]; }
 			
 			if (check>CollisionDistance) {
-				cameraX = NcameraX;
-				cameraY = NcameraY;			
+				cameraX = Math.floor(NcameraX);
+				cameraY = Math.floor(NcameraY);			
 			} else { isWalk = false; isBackwards = false; }
 		}
 		world3d();
@@ -309,9 +309,6 @@
 		ctx.fillStyle = "rgb(127,127,127)";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		
-		var cX = Math.floor(cameraX);
-		var cY = Math.floor(cameraY);
-		
 		var sortWalls = [];
 		
 		parseMap();
@@ -324,10 +321,10 @@
 			var coord1 = wall[0];
 			var coord2 = wall[1];
 			cameraAngle = cameraAngle%360;
-			var node0 = [ coord1[0]*space - cX, -canvas.height/2, coord1[1]*space - cY ];
-			var node1 = [ coord1[0]*space - cX,  canvas.height/2, coord1[1]*space - cY ];
-			var node2 = [ coord2[0]*space - cX,  canvas.height/2, coord2[1]*space - cY ];
-			var node3 = [ coord2[0]*space - cX, -canvas.height/2, coord2[1]*space - cY ];
+			var node0 = [ coord1[0]*space - cameraX, -canvas.height/2, coord1[1]*space - cameraY ];
+			var node1 = [ coord1[0]*space - cameraX,  canvas.height/2, coord1[1]*space - cameraY ];
+			var node2 = [ coord2[0]*space - cameraX,  canvas.height/2, coord2[1]*space - cameraY ];
+			var node3 = [ coord2[0]*space - cameraX, -canvas.height/2, coord2[1]*space - cameraY ];
 			var nodes = [ node0, node1, node2, node3 ];
 			
 			var sinTheta = Math.sin(cameraAngle);
@@ -406,7 +403,7 @@
 			if ((players[i][4][0] > 0 && players[i][0][0] > players[i][3][0]) || (players[i][4][0] < 0 && players[i][0][0] < players[i][3][0])) players[i][4][0]=0;
 			if ((players[i][4][1] > 0 && players[i][0][1] > players[i][3][1]) || (players[i][4][1] < 0 && players[i][0][1] < players[i][3][1])) players[i][4][1]=0;
 				players[i][0]=[ Math.floor(players[i][0][0]+players[i][4][0]), Math.floor(players[i][0][1]+players[i][4][1]) ];
-				var Pnode = [ players[i][0][0] - cX, 0, players[i][0][1] - cY ];
+				var Pnode = [ players[i][0][0] - cameraX, 0, players[i][0][1] - cameraY ];
 				var sinTheta = Math.sin(cameraAngle);
 				var cosTheta = Math.cos(cameraAngle);
 				var x = Pnode[0];
@@ -454,7 +451,7 @@
 				}
 			}
 			if (enemies[i][0][0]>=startX && enemies[i][0][0]<endX && enemies[i][0][1]>=startY && enemies[i][0][1]<endY && enemies[i][1]>0) {
-				var Enode = [ enemies[i][0][0]*space - cX + enemies[i][3][0], 0, enemies[i][0][1]*space - cY + enemies[i][3][1] ];
+				var Enode = [ enemies[i][0][0]*space - cameraX + enemies[i][3][0], 0, enemies[i][0][1]*space - cameraY + enemies[i][3][1] ];
 				var sinTheta = Math.sin(cameraAngle);
 				var cosTheta = Math.cos(cameraAngle);
 				var x = Enode[0];
