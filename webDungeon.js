@@ -214,6 +214,7 @@
 					if (object[5]==null)
 						ctx.drawImage(IMGenemy,((object[2][0]-64)/(object[2][2]*DepthAttribute)+canvas.width/2),((object[2][1]-128)/(object[2][2]*DepthAttribute)+canvas.height/2),128/(object[2][2]*DepthAttribute),256/(object[2][2]*DepthAttribute));
 					else {
+						console.log(object);
 						ctx.drawImage(IMGplayer,((object[2][0]-64)/(object[2][2]*DepthAttribute)+canvas.width/2),((object[2][1]-128)/(object[2][2]*DepthAttribute)+canvas.height/2),128/(object[2][2]*DepthAttribute),256/(object[2][2]*DepthAttribute));
 						if (playern=="" && object[2][2]<3200) {
 							document.getElementById("message").innerHTML="YOU HEAR: " + object[5];
@@ -308,8 +309,8 @@
 		ctx.fillStyle = "rgb(127,127,127)";
 		ctx.fillRect(0,0,canvas.width,canvas.height);
 		
-		var cX = Math.round(cameraX);
-		var cY = Math.round(cameraY);
+		var cX = Math.floor(cameraX);
+		var cY = Math.floor(cameraY);
 		
 		var sortWalls = [];
 		
@@ -402,9 +403,9 @@
 		if (endY>size) { endY=size; }
 		
 		for (var i = 0; i < players.length; i++) {
-				if ((players[i][4][0] > 0 && players[i][0][0] > players[i][3][0]) || (players[i][4][0] < 0 && players[i][0][0] < players[i][3][0])) players[i][4][0]=0;
-				if ((players[i][4][1] > 0 && players[i][0][1] > players[i][3][1]) || (players[i][4][1] < 0 && players[i][0][1] < players[i][3][1])) players[i][4][1]=0;
-				players[i][0]=[ Math.round(players[i][0][0]+players[i][4][0]), Math.round(players[i][0][1]+players[i][4][1]) ];
+			if ((players[i][4][0] > 0 && players[i][0][0] > players[i][3][0]) || (players[i][4][0] < 0 && players[i][0][0] < players[i][3][0])) players[i][4][0]=0;
+			if ((players[i][4][1] > 0 && players[i][0][1] > players[i][3][1]) || (players[i][4][1] < 0 && players[i][0][1] < players[i][3][1])) players[i][4][1]=0;
+				players[i][0]=[ Math.floor(players[i][0][0]+players[i][4][0]), Math.floor(players[i][0][1]+players[i][4][1]) ];
 				var Pnode = [ players[i][0][0] - cX, 0, players[i][0][1] - cY ];
 				var sinTheta = Math.sin(cameraAngle);
 				var cosTheta = Math.cos(cameraAngle);
@@ -418,10 +419,11 @@
 				var z = Pnode[2];
 				Pnode[1] = y * cosTheta - z * sinTheta;
 				Pnode[2] = z * cosTheta + y * sinTheta;
-				var M = Math.sqrt(Math.pow(Pnode[0],2)+Math.pow(Pnode[2],2));
-				players[i][2] = Pnode;
-				console.log(players[i]);
-				sortWalls.push([M,null,players[i]]);
+				var PM = Math.sqrt(Math.pow(Pnode[0],2)+Math.pow(Pnode[2],2));
+				if (Pnode[2]>0) {
+					players[i][2] = Pnode;
+					sortWalls.push([PM,null,players[i]]);
+				} else { players[i][2] = null; }
 		}
 		
 		for (var i = 0; i < enemies.length; i++) {
@@ -466,9 +468,11 @@
 				Enode[1] = y * cosTheta - z * sinTheta;
 				Enode[2] = z * cosTheta + y * sinTheta;
 				var M = Math.sqrt(Math.pow(Enode[0],2)+Math.pow(Enode[2],2));
-				enemies[i][2] = Enode;
-				sortWalls.push([M,null,enemies[i]]);
-			} else { enemies[i][2] = null; }
+				if (Enode[2]>0)	{
+					enemies[i][2] = Enode;
+					sortWalls.push([M,null,enemies[i]]);
+				} else { enemies[i][2] = null; }		
+			}
 		}		
 		
 		sortWalls.sort(function(a, b) { return b[0]-a[0]; });
@@ -490,11 +494,11 @@
 						xcoord=players[i][0][0];
 						ycoord=players[i][0][1];
 					}
-				updated.push([ [ xcoord, ycoord ], 3, null, [ coords[key][1], coords[key][2] ], [ ((coords[key][1]-xcoord)/10), ((coords[key][2]-ycoord)/10) ], key ]);		
+				updated.push([ [ xcoord, ycoord ], 3, null, [ coords[key][1], coords[key][2] ], [ (coords[key][1]-xcoord)/10, (coords[key][2]-ycoord)/10 ], key ]);		
 			});
 			players=updated;
 		}
-		$.get("sync.php", { name: playerName, X: cameraX, Y: cameraY }, function(response) {
+		$.get("sync.php", { name: playerName, X: Math.floor(cameraX), Y: Math.floor(cameraY) }, function(response) {
 			if (response!="") 
 				coords=JSON.parse(response);
 			else
