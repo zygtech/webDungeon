@@ -1,6 +1,6 @@
 <?php
 	if ($_GET['name']=='')
-		echo '<link rel="manifest" href="manifest.json"><form style="margin: 50px;"><center><input name="name" type="text" placeholder="YOUR NAME" /> <input type="submit" value="PLAY!" /></center></form>'; 
+		echo '<link rel="manifest" href="manifest.json"><form style="margin: 50px;"><center><input style="font-size: larger;" name="name" type="text" placeholder="YOUR NAME" /> <input style="font-size: larger;" type="submit" value="PLAY!" /></center></form>'; 
 	else {
 ?>
 
