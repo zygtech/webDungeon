@@ -177,6 +177,7 @@
 		if (document.documentElement.clientHeight-canvas.height>123) {
 			$("#head").show();
 		}
+		space=space*document.documentElement.clientWidth/1280;
 	}
 	
 	function calculateIntersection(p1, p2, p3, p4) {
