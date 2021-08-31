@@ -9,5 +9,5 @@
 	unset($level[$name]);
 	if ($level!=NULL) echo json_encode($level);
 	$level[$name] = array(time(),$_GET['X'],$_GET['Y']);
-	file_put_contents('run.db',serialize($level),LOCK_EX);
+	file_put_contents('run.db',serialize($level));
 ?>

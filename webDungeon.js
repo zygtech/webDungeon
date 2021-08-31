@@ -22,6 +22,7 @@
 	var attack = false;
 	var hit = 0;
 	var kills = 0;
+	var coords = [];
 	var players = [];
 	var playern = "";
 	var enemies = [];
@@ -479,26 +480,26 @@
 	}
 	
 	function updatePlayers() {
-		var coords = [];
-		
-		$.get("sync.php", { name: playerName, X: cameraX, Y: cameraY }, function(response) {
-			if (response!="") 
-				coords=JSON.parse(response);
-			else
-				coords = null;
-			updated = [];
-			if (coords!=null) Object.keys(coords).forEach(function(key) {
-				var xcoord,ycoord;
-				xcoord = coords[key][1];
-				ycoord = coords[key][2];
+		if (coords!=null) {
+			updated=[];
+			Object.keys(coords).forEach(function(key) {
+				var xcoord = coords[key][1];
+				var ycoord = coords[key][2];
 				for (var i = 0; i < players.length; i++) 
-					if (players[i][5]=key) {
+					if (players[i][5]==key) {
 						xcoord=players[i][0][0];
 						ycoord=players[i][0][1];
 					}
 				updated.push([ [ xcoord, ycoord ], 3, null, [ coords[key][1], coords[key][2] ], [ ((coords[key][1]-xcoord)/10), ((coords[key][2]-ycoord)/10) ], key ]);		
 			});
 			players=updated;
+		}
+		$.get("sync.php", { name: playerName, X: cameraX, Y: cameraY }, function(response) {
+			if (response!="") 
+				coords=JSON.parse(response);
+			else
+				coords = null;
+			
 		});
 	}
 	
