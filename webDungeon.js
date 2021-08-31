@@ -129,6 +129,8 @@
 	
 	function readChat() {
 		$("#chat").load("read.php", { name: playerName });
+		var scroll = document.getElementById("chat");
+		scroll.scrollTop = scroll.scrollHeight;
 	}
 
 	function onmousedown(e) { if (checkLock()) { isWalk = true; if (e.button===2) { isBackwards = true; } else { isBackwards = false; }; } };
