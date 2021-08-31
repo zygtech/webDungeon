@@ -216,7 +216,7 @@
 					else {
 						console.log(object);
 						ctx.drawImage(IMGplayer,((object[2][0]-64)/(object[2][2]*DepthAttribute)+canvas.width/2),((object[2][1]-128)/(object[2][2]*DepthAttribute)+canvas.height/2),128/(object[2][2]*DepthAttribute),256/(object[2][2]*DepthAttribute));
-						if (playern=="" && object[2][2]<3200) {
+						if (playern=="" && object[2][2]<space*3) {
 							document.getElementById("message").innerHTML="YOU HEAR: " + object[5];
 							playern=object[5];
 						}
