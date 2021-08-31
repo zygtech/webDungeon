@@ -98,7 +98,7 @@
 			for (var i = 0; i < enemies.length; i++) {
 				if (enemies[i][1]>0 && enemies[i][2]!=null) {
 					if (enemies[i][2][2]>0 && enemies[i][2][2]<100 && enemies[i][2][0]>-200 && enemies[i][2][0]<200) {
-						clearTimeout(clock); document.getElementById("message").innerHTML="GAME OVER";
+						clearTimeout(clock); document.getElementById("message").innerHTML="GAME OVER"; fail;
 					}
 				}
 			}
@@ -269,7 +269,7 @@
 		var tX = Math.floor(cameraX/space);
 		var tY =  Math.floor(cameraY/space);
 		$("#maze td#" + tX + "-" + tY).css("background", "red");
-		if (tX==size-1 && tY==size-1) { clearTimeout(clock); document.getElementById("message").innerHTML="CONGRATULATIONS"; }
+		if (tX==size-1 && tY==size-1) { clearTimeout(clock); document.getElementById("message").innerHTML="CONGRATULATIONS"; fail; }
 		var startX = tX-ParseDistance;
 		var startY = tY-ParseDistance;
 		var endX = startX+ParseDistance*2;
