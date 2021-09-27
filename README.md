@@ -1,6 +1,6 @@
 # webDungeon3D
 webDungeon: Multiplayer Game
 
-https://zygtech.pl/webDungeon/
+https://iPe.center/webDungeon/
 
 Use map.php to generate maps!
